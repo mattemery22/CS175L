@@ -67,7 +67,7 @@ public class housePaint {
 		double finalTotalSqFt = preTotalSqFt - windowsSqFt - doorsSqFt;
 		double totalCost = finalTotalSqFt*costPerSqFt;
 		
-		System.out.println("Your total square footage is "+finalTotalSqFt);
+		System.out.println("The total square footage is "+finalTotalSqFt);
 		System.out.println("Your cost estimate is $"+df2.format(totalCost));
 		in.close();
 	
