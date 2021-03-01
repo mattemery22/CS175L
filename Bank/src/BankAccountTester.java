@@ -12,46 +12,45 @@ public class BankAccountTester {
 		//Starting balance
 		System.out.print("Please enter the starting balance: ");
 		double stB = in.nextDouble();
-		BankAccount myBankAccount = new BankAccount(stB);
-		System.out.println("You successfully created an account with starting balance $"+myBankAccount.getBalance());
+		System.out.print("Please enter the interest percentage\n(enter with decimals ex: 5% is .05): ");
+		double inP = in.nextDouble();
+		BankAccount myBankAccount = new BankAccount(stB,inP);
 		System.out.println();
 	
 		while (run==true) {
-			System.out.print("Enter '1' for Withdraw, '2' for Deposit, '3' to end the transactions: ");
+			System.out.print("Enter '1' for Withdraw, '2' for Deposit,\n'3' to generate interest, '4' to check the balance,\n'5' to end transactions ");
 			int choice = in.nextInt();
 			
 			
 			//Withdraw
 			if (choice==1) {
-				System.out.print("Please enter the withdraw amount: ");
-				double withD = in.nextDouble();
-				myBankAccount.withdraw(withD);
-				System.out.println("You successfully withdrew $"+withD+".\nYour current balance is $"+myBankAccount.getBalance());
-				System.out.println();
+					System.out.print("\nPlease enter the withdraw amount: ");
+					double withD = in.nextDouble();
+					myBankAccount.withdraw(withD);				
 			}
 			
 			//Deposit
 			else if (choice==2) {
-				System.out.print("Please enter the deposit amount: ");
+				System.out.print("\nPlease enter the deposit amount: ");
 				double deP = in.nextDouble();
 				myBankAccount.deposit(deP);
-				System.out.println("You successfully deposited $"+deP+".\nYour current balance is $"+myBankAccount.getBalance());
 			}
 			
-			//End
+			//Calculate Interest
 			else if (choice==3) {
+				myBankAccount.calcInterest();
+			}
+			else if (choice==4) {
+				System.out.println("The current balance is $"+myBankAccount.getBalance());
+			}
+			//End
+			else if (choice==5) {
 				run=false;
 			}
 			System.out.println();
 		}
-		System.out.println("Thank you for using our bank!");
-		
+		System.out.println("Thank you for using our bank.\nHave a nice day!");
 	
-		
-		
-		
-		
-		
 	}
 
 }
