@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 public class BankAccountTester {
 
@@ -8,6 +9,7 @@ public class BankAccountTester {
 		//Scanner 
 		System.out.println("Welcome to our bank!\n");
 		Scanner in = new Scanner(System.in);
+		DecimalFormat decFormat = new DecimalFormat("0.00");
 		boolean run =true;
 		//Starting balance
 		System.out.print("Please enter the starting balance: ");
@@ -15,8 +17,24 @@ public class BankAccountTester {
 		System.out.print("Please enter the interest percentage\n(enter with decimals ex: 5% is .05): ");
 		double inP = in.nextDouble();
 		BankAccount myBankAccount = new BankAccount(stB,inP);
-		System.out.println();
-	
+		BankThreshold threshold = new BankThreshold(stB,inP);
+		System.out.println("Please enter your interest threshold: ");
+
+		while (in.hasNextDouble()) {
+				
+				double thresholdAmount = in.nextDouble();
+				threshold.interestThreshold(thresholdAmount);
+				System.out.println("Your interest threshold of $"+decFormat.format(thresholdAmount)+" will be met in "+threshold.getMonths()+" months at your current rate.");
+				threshold.resetMonths();
+				threshold.resetBalance(stB);
+				System.out.println("Please enter your interest threshold or enter 'End' to continue to the rest of the bank functions: ");
+				
+		}
+		in.next();
+		in.nextLine();
+
+
+
 		while (run==true) {
 			System.out.print("Enter '1' for Withdraw, '2' for Deposit,\n'3' to generate interest, '4' to check the balance,\n'5' to end transactions ");
 			int choice = in.nextInt();
